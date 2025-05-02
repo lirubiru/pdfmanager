@@ -3,6 +3,12 @@
   - Felipe Barauna
   -
 
+## Project Structure
+── pdfmanager
+│   ├── core
+│   ├── cli
+│   ├── gui
+
 ## How to build
 You can build both the cli and the gui using:
 ```
