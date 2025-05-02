@@ -5,8 +5,11 @@
 
 ## Project Structure
 ── pdfmanager
+
 │   ├── core
+
 │   ├── cli
+
 │   ├── gui
 
 ## How to build
