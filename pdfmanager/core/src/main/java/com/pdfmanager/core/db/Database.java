@@ -1,20 +1,17 @@
 package com.pdfmanager.core.db;
 
-import java.io.File;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Database {
-    private static final String URL = "jdbc:sqlite:data/pdfmanager.db";
+    private static final String URL = "jdbc:sqlite:" +
+        Paths.get(System.getProperty("user.home"),"pdfmanager.db").toString();
     private static Connection connection;
 
     public static void initialize() throws SQLException {
-        File dbDir = new File("data");
-        if (!dbDir.exists()) {
-            dbDir.mkdirs();
-        }
         connection = DriverManager.getConnection(URL);
         runMigrations();
     }
