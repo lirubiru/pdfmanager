@@ -21,7 +21,21 @@ public class Database {
     }
 
     private static void runMigrations() {
-        String[] migrations = {};
+        String[] migrations = {
+            "CREATE TABLE directory (" +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "name TEXT NOT NULL," +
+            "parent_id INTEGER," +
+            "FOREIGN KEY (parent_id) REFERENCES directory(id)" +
+            ");",
+
+            "CREATE TABLE library (" +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "name TEXT NOT NULL," +
+            "root_dir_id INTEGER NOT NULL," +
+            "FOREIGN KEY (root_dir_id) REFERENCES directory(id)" +
+            ");",
+        };
 
         try (Statement stmt = connection.createStatement()) {
            for (String sql : migrations) {
