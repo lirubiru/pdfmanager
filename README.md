@@ -1,7 +1,7 @@
 # PDFmanager
 ## Authors:
   - Felipe Barauna
-  -
+  - Lucas Anselmo
 
 ## Project Structure
 ── pdfmanager
