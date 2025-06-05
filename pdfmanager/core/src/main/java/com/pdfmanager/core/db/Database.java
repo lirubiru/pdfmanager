@@ -22,19 +22,52 @@ public class Database {
 
     private static void runMigrations() {
         String[] migrations = {
-            "CREATE TABLE directory (" +
+            "CREATE TABLE IF NOT EXISTS library (" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT," +
             "name TEXT NOT NULL," +
-            "parent_id INTEGER," +
-            "FOREIGN KEY (parent_id) REFERENCES directory(id)" +
+            "path TEXT NOT NULL" +
             ");",
 
-            "CREATE TABLE library (" +
+            "CREATE TABLE IF NOT EXISTS book (" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT," +
             "name TEXT NOT NULL," +
-            "root_dir_id INTEGER NOT NULL," +
-            "FOREIGN KEY (root_dir_id) REFERENCES directory(id)" +
+            "dirname TEXT NOT NULL," +
+            "library_id INTEGER NOT NULL," +
+            "author TEXT NOT NULL," +
+            "title TEXT NOT NULL," +
+            "subtitle TEXT NOT NULL," +
+            "genre TEXT NOT NULL," +
+            "editor TEXT," +
+            "page_size integer," +
+            "publication_year integer," +
+            "FOREIGN KEY (library_id) REFERENCES library(id)" +
             ");",
+
+            "CREATE TABLE IF NOT EXISTS note (" +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "name TEXT NOT NULL," +
+            "dirname TEXT NOT NULL," +
+            "library_id INTEGER NOT NULL," +
+            "author TEXT NOT NULL," +
+            "title TEXT NOT NULL," +
+            "subtitle TEXT NOT NULL," +
+            "discipline TEXT NOT NULL," +
+            "institution TEXT," +
+            "page_size INTEGER," +
+            "FOREIGN KEY (library_id) REFERENCES library(id)" +
+           ");",
+
+            "CREATE TABLE IF NOT EXISTS slide (" +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "name TEXT NOT NULL," +
+            "dirname TEXT NOT NULL," +
+            "library_id INTEGER NOT NULL," +
+            "author TEXT NOT NULL," +
+            "title TEXT NOT NULL," +
+            "discipline TEXT NOT NULL," +
+            "institution TEXT," +
+            "FOREIGN KEY (library_id) REFERENCES library(id)" +
+            ");"
         };
 
         try (Statement stmt = connection.createStatement()) {
