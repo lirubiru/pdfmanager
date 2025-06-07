@@ -11,6 +11,11 @@ public class Library {
     this.path = path;
   }
 
+  public Library(String name, String path){
+    this.name = name;
+    this.path = path;
+  }
+
     public int getId() {
         return id;
     }
