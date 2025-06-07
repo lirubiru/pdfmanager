@@ -1,26 +1,29 @@
 package com.pdfmanager.core.db;
 
-import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Database {
-    private static final String URL = "jdbc:sqlite:" +
-        Paths.get(System.getProperty("user.home"),"pdfmanager.db").toString();
-    private static Connection connection;
+public class Database implements DatabaseInterface {
+    private final String URL;
+    private Connection connection;
 
-    public static void initialize() throws SQLException {
+    public Database(String url) {
+        this.URL = url;
+    }
+
+    public void initialize() throws SQLException {
         connection = DriverManager.getConnection(URL);
         runMigrations();
     }
 
-    public static  Connection getConnection() {
+    @Override
+    public Connection getConnection() {
         return connection;
     }
 
-    private static void runMigrations() {
+    private void runMigrations() {
         String[] migrations = {
             "CREATE TABLE IF NOT EXISTS library (" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -73,14 +76,14 @@ public class Database {
         try (Statement stmt = connection.createStatement()) {
            for (String sql : migrations) {
                 stmt.execute(sql);
-           } 
+           }
         } catch (SQLException e) {
             System.err.println("Erro ao executar migration:" + e.getMessage());
         }
 
     }
 
-    public static void close() {
+    public void close() {
         if (connection != null) {
             try {
                 connection.close();
@@ -89,5 +92,5 @@ public class Database {
             }
         }
     }
-    
+
 }

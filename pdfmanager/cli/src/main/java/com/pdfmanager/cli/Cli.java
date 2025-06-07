@@ -1,16 +1,20 @@
 package com.pdfmanager.cli;
 
+import java.nio.file.Paths;
 import java.sql.SQLException;
 
 import com.pdfmanager.core.db.Database;
+import com.pdfmanager.core.db.DatabaseInterface;
 
 public class Cli {
+    private final String DB_URL = "jdbc:sqlite:" + Paths.get(System.getProperty("user.home"),"pdfmanager.db").toString();
 
     public Cli() {}
 
     public void readArgs(String[] args) {
         try {
-            Database.initialize();
+            DatabaseInterface database = new Database(DB_URL);
+            database.initialize();
 
             if(args.length <= 0) {
                 help();
@@ -31,7 +35,7 @@ public class Cli {
 
             }
 
-            
+
         } catch (SQLException e) {
             System.out.println("Erro: " + e.getMessage());
         }
@@ -41,5 +45,5 @@ public class Cli {
         // Adicionar mensagem de help
         System.out.println("Help");
     }
-    
+
 }
