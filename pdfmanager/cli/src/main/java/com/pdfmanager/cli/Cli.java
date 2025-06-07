@@ -1,16 +1,11 @@
 package com.pdfmanager.cli;
 
-import java.nio.file.Paths;
-import java.sql.SQLException;
 import java.util.List;
 
-import com.pdfmanager.core.db.Database;
-import com.pdfmanager.core.db.DatabaseInterface;
 import com.pdfmanager.core.entities.Library;
 import com.pdfmanager.core.services.LibraryService;
 
 public class Cli {
-    private final String DB_URL = "jdbc:sqlite:" + Paths.get(System.getProperty("user.home"),"pdfmanager.db").toString();
     private final LibraryService libraryService;
 
     public Cli(LibraryService libraryService) {
@@ -28,9 +23,6 @@ public class Cli {
 
     public void readArgs(String[] args) {
         try {
-            DatabaseInterface database = new Database(DB_URL);
-            database.initialize();
-
             if(args.length <= 0) {
                 help();
                 return;
@@ -42,7 +34,7 @@ public class Cli {
             String target;
             try {
                 action = args[0];
-                target =  args[1];
+                target = args[1];
             } catch (IndexOutOfBoundsException e) {
                 System.err.println(e.getMessage());
                 return;
@@ -57,18 +49,16 @@ public class Cli {
             switch(action) {
                 case "create" -> {
                     if (args.length <= 1) {
-                        System.out.println("Falta um argumento para criar.");
+                        System.out.println(">> Ação 'criar' requer um argumento\n >> Ex: pdfmanager create [target]");
                         return;
                     }
                     // Checar valor de 'target' para decidir o que criar
                 }
+                case "list" -> {
+
+                }
                 default -> System.out.println("Comando \"" + action + "\" não existe");
-
             }
-
-
-        } catch (SQLException e) {
-            System.out.println("Erro: " + e.getMessage());
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
         }

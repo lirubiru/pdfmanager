@@ -13,6 +13,7 @@ public class Database implements DatabaseInterface {
         this.URL = url;
     }
 
+    @Override
     public void initialize() throws SQLException {
         connection = DriverManager.getConnection(URL);
         runMigrations();
