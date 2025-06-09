@@ -17,6 +17,11 @@ public class LibraryService {
   }
 
   public void create(String name, String path) {
+    // Checar se path leva a um diretorio existente -> throw Exception
+
+    // Checar se path já foi registrado numa outra biblioteca -> throw Exception
+
+    // Checar se nome já foi registrado numa outra biblioteca -> throw Exception
     this.libraryRepository.create(new Library(name, path));
   }
 

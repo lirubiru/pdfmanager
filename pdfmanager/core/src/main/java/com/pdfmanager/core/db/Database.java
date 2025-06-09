@@ -20,8 +20,8 @@ public class Database implements DatabaseInterface {
     }
 
     @Override
-    public Connection getConnection() {
-        return connection;
+    public Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(URL);
     }
 
     private void runMigrations() {

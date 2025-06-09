@@ -18,7 +18,7 @@ public class LibraryRepository extends BaseRepository<Library> {
     public void create(Library lib) {
         String sql = "INSERT INTO " + getTableName() + " (name, path) VALUES (?, ?)";
         try (
-            Connection conn = this.db.getConnection();
+            Connection conn = this.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)
         ) {
 

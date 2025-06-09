@@ -12,10 +12,14 @@ import com.pdfmanager.core.db.DatabaseInterface;
 
 
 public abstract class BaseRepository<T> {
-    protected final DatabaseInterface db;
+    DatabaseInterface db;
 
     public BaseRepository(DatabaseInterface db) {
         this.db = db;
+    }
+
+    protected Connection getConnection() throws SQLException {
+        return this.db.getConnection();
     }
 
     protected abstract String getTableName();
@@ -27,7 +31,7 @@ public abstract class BaseRepository<T> {
         String sql = "SELECT * FROM " + getTableName();
 
         try (
-            Connection conn = this.db.getConnection();
+            Connection conn = this.getConnection();
             Statement stmt = conn.createStatement();
         ){
             ResultSet result = stmt.executeQuery(sql);
@@ -44,7 +48,7 @@ public abstract class BaseRepository<T> {
     public void deleteById(int id) {
         String sql = "DELETE FROM " + getTableName() + " WHERE id = ?";
 
-        try (Connection conn = this.db.getConnection()){
+        try (Connection conn = this.getConnection()){
             PreparedStatement pstmt = conn.prepareStatement(sql);
 
             pstmt.setInt(1, id);
