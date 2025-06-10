@@ -6,4 +6,4 @@
  */
 
 rootProject.name = "pdfmanager"
-include(":pdfmanager:core", ":pdfmanager:cli", ":pdfmanager:gui")
+include(":pdfmanager:core", ":pdfmanager:cli")
