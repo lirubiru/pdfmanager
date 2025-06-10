@@ -1,4 +1,4 @@
-[] Criar Biblioteca
+[X] Criar Biblioteca
   [] Verificar validações (já existe biblioteca com esse nome, path leva a caminho inexistente, já existe biblioteca com esse path)
 [] Listar Bibliotecas
 [] Editar Bibliotecas
