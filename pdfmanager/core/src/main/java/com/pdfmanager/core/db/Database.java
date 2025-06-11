@@ -61,8 +61,7 @@ public class Database implements DatabaseInterface {
 
             "CREATE TABLE IF NOT EXISTS slide (" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "name TEXT NOT NULL," +
-            "dirname TEXT NOT NULL," +
+            "filename TEXT NOT NULL," +
             "library_id INTEGER NOT NULL," +
             "author TEXT NOT NULL," +
             "title TEXT NOT NULL," +
