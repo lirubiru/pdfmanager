@@ -1,29 +1,17 @@
 # PDFmanager
 ## Authors:
-  - Felipe Barauna
-  - Lucas Anselmo
+  - Felipe Barauna ()
+  - Lucas Anselmo (lucas.anselmo.099@ufrn.edu.br)
 
-## Project Structure
-── pdfmanager
+## How to Build
+To build the entire project:
 
-│   ├── core
+```bash
+mvn clean package
 
-│   ├── cli
+## How to Run
+java -jar cli/target/cli-1.0-SNAPSHOT.jar
 
-│   ├── gui
-
-## How to build
-You can build both the cli and the gui using:
-```
-./gradlew build
-```
-
-Or build a project individually using:
-```
-./gradlew pdfmanager:{project}:build
-```
-
-## How to run 
-```
-./gradlew pdfmanager:{project}:run
-```
+## Requirements
+Java 17+
+Maven 3.6.0+
