@@ -1,6 +1,5 @@
 # PDFmanager
 ## Authors:
-  - Felipe Barauna ()
   - Lucas Anselmo (lucas.anselmo.099@ufrn.edu.br)
 
 ## How to Build
