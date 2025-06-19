@@ -1,1 +1,0 @@
-# PDFmanager core
