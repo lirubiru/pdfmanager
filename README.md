@@ -9,8 +9,8 @@
   mvn clean package
 
 ## How to Run
-  java -jar cli/target/cli-1.0-SNAPSHOT.jar
+  - java -jar cli/target/cli-1.0-SNAPSHOT.jar
 
 ## Requirements
-  Java 17+
-  Maven 3.6.0+
+  - Java 17+
+  - Maven 3.6.0+
